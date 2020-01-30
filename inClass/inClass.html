@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+
+        function changeBackground(){
+            document.body.style.backgroundColor = "blue";
+        }
+
+        for(let i = 1; i <= 5; i++){
+            console.log(i);
+        }
+
+        let x=1
+        while (x <= 5) {
+            console.log(x)
+            x++;
+        }
+
+        
+    </script>
+
+    
+
+</head>
+<body>
+    <p onclick = changeBackground()>Click Here to change to blue</p>
+
+    <p id="changeGreen">Click to change to green</p>
+
+    <p id="changeRed">Click to change to Red</p>
+
+    
+
+</body>
+<script>
+    document.querySelector("#changeGreen").onclick = function(){
+            document.body.style.backgroundColor = "green"
+        };
+
+    document.querySelector("#changeRed").addEventListener("click",function(){
+        document.body.style.backgroundColor = "Red"
+    })
+</script>
+</html>
