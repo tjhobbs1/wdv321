@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<script>
+    function selctionMade(value){
+      //This function will take in a value from the selection menu and dynamically change the form according to the selection. 
+
+      if (value=='C'){
+          //Complaint is selected
+          document.querySelector('#complaintSelected').style.display = 'inline';
+          document.querySelector('#technicalSelected').style.display = 'none';
+          document.querySelector('#productIssueSelected').style.display = 'none';
+          document.querySelector('#submit').style.display = 'inline';
+
+      }else if(value =='T'){
+          //Technical is selected
+          document.querySelector('#complaintSelected').style.display = 'none';
+          document.querySelector('#technicalSelected').style.display = 'inline';
+          document.querySelector('#productIssueSelected').style.display = 'none';
+          document.querySelector('#submit').style.display = 'inline';
+
+      }else if(value =='P'){
+          //Product Issues is selected
+          document.querySelector('#complaintSelected').style.display = 'none';
+          document.querySelector('#technicalSelected').style.display = 'none';
+          document.querySelector('#productIssueSelected').style.display = 'inline';
+          document.querySelector('#submit').style.display = 'inline';
+      }
+      else{
+          //Nothing is selected. 
+          document.querySelector('#complaintSelected').style.display = 'none';
+          document.querySelector('#technicalSelected').style.display = 'none';
+          document.querySelector('#productIssueSelected').style.display = 'none';
+          document.querySelector('#submit').style.display = 'none';
+
+      }
+    }
+</script>
+
+<title>WDV321 Advanced Javascript</title>
+</head>
+
+<body>
+<h1>WDV321 Advanced Javascript</h1>
+<h2>Dynamic Form Structure - Assignment</h2>
+<p>Use this page as the basis for your assignment. Given the drop down list provided on this page please do the following things.</p>
+<p>
+  <form action="POST">
+  <label>Please Select your reason for contactin us.
+    <select name="contactType" id="contactType" onchange="selctionMade(value)">
+      <option value="">Make a Selection</option>
+      <option value="C">Complaints</option>
+      <option value="T">Technical Problems</option>
+      <option value="P">Product Issues</option>
+    </select>
+  </label>
+</p>
+<div id="complaintSelected" style="display: none;">
+  <select name="complaint" id="complaint">
+    <option value="Poor Service">Poor Customer Service</option>
+    <option value="Delayed Delivery">Delayed Delivery</option>
+    <option value="Website Issues">Website Issues</option>
+    <option value="Other">Other</option>
+  </select>
+</div><!--End complaintSelected-->
+
+<div id="technicalSelected" style="display: none;">
+    <input type="checkbox" name="WontTurnOn" value="Wont Turn On">
+    <label for="WontTurnOn">Won't Turn On</label><br>
+    <input type="checkbox" name="bug" value="Bug">
+    <label for="bug">Bug to Report</label><br>
+    <input type="checkbox" name="Website" value="Website Issue">
+    <label for="website"> Website Issues</label><br>
+    <input type="checkbox" name="other" value="other">
+    <label for="other">Other</label><br>
+
+
+</div><!--End technincalSelected-->
+
+<div id="productIssueSelected" style="display: none;">
+  <input type="radio" id="NotWorking" name="prod" value="Not Working">
+  <label for="NotWorking">Not Working</label><br>
+  <input type="radio" id="Broken" name="prod" value="Broken">
+  <label for="Broken">Broken</label><br>
+  <input type="radio" id="Wrong Color" name="prod" value="Wrong Color">
+  <label for="Wrong Color">Wrong Color</label><br>
+  <input type="radio" id="other" name="prod" value="other">
+  <label for="other">Other</label>
+
+</div><!--End productIssueSelected-->
+<br>
+<br>
+<button id="submit" style="display: none;">Submit</button>
+</form>
+<ol>
+  <li>When  Complaints are selected please dynamically create and display a new drop down list that includes at least four options of your choice.</li>
+  <li>When Technical Problems are selected please dynamically create and display at least four types of problems with an associated checkbox.</li>
+  <li>When Product Issues aer selected please dynamically create and display at least four types options as a grouped set of radio buttons. </li>
+  <li>When a new option is selected your script should remove any of the dynamic content. </li>
+</ol>
+<p>&nbsp;</p>
+</body>
+</html>

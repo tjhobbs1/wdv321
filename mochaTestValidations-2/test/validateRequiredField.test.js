@@ -2,6 +2,7 @@
 
 var assert = require('chai').assert;	//Chai assertion library
 var validInput = require('../app/validateRequiredField');
+var vaildPhoneNumber = require('../app/validatePhoneNumber');
 
 describe("Testing Input Required", function(){
 	
@@ -27,7 +28,7 @@ describe("Testing Input Required", function(){
 	
 	it("The word null should fail", function() {
 		assert.isFalse(validInput('null'));
-	});
+	}); 
 	
 	it("The word undefined should fail", function() {
 		assert.isFalse(validInput('undefined'));
@@ -45,7 +46,9 @@ describe("Testing Input Required", function(){
 
 describe("Testing Valid Phone Number", function(){
 	
-	it("Input is required");
+	it("Input is required",function(){
+		assert.isTrue(vaildPhoneNumber(5))
+	});
 	it("Input must be numeric");
 	it("Input must be integers");
 	it("Input must be 10 numbers");
