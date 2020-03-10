@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>WDV321 Advanced Javascript - JSON</title>
+<script src="createJSONArray.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+  crossorigin="anonymous"></script>
+
+<!--
+    
+    Instructions:
+    	1. Incorporate the createJSONArray.js file into this page as an external javascript file.
+        2. Access the JSON object in local storage and convert it into a javascript object.
+        3. Use the information in the object to complete a student card for EACH student object.
+        4. Account for the fact that there could be a random number of student objects. 
+        5. Use Jquery commands whenever possible.  
+-->
+
+<script>
+
+window.onload = function(){
+	
+
+let studentCardID = document.querySelectorAll('div h3 span');
+let studentGPA = document.querySelectorAll('div p span');
+let courseList = document.querySelectorAll('ul');
+
+for(i = 0; i< studentDB.length; i++){
+	studentCardID[i].innerHTML = studentDB[i].student_id;
+	studentGPA[i].innerHTML = studentDB[i].student_gpa;
+
+	for(g=0; g< studentDB[i].student_courses.length; g++){
+		courseList[i].innerHTML += "<li>" + studentDB[i].student_courses[g] + "</li><br>"
+	}
+}
+let courses = document.querySelector('ul');
+	
+}
+
+
+</script>
+
+<style>
+	.studentCard	{
+		width:200px;
+		box-sizing:border-box;
+		background-color:lightblue;
+		padding-left:5px;
+		padding-top:3px;
+		border:thin solid blue;
+		box-shadow: 2px 2px 2px grey;		
+	}
+	
+	.studentCard h3	{
+		margin:0px;	
+	}
+</style>
+
+
+
+</head>
+
+<body>
+	<h1>WDV321 Advanced Javascript</h1>
+    <h2>Unit-8 JSON Objects</h2>
+    <h3>Creating and consuming a JSON object</h3>
+
+<div class="studentCard" id="card1">
+	<h3>Student ID: <span></span></h3>
+    <p>Student GPA: <span></span></p>
+	<p>Student Courses:
+    	<ul>
+			<!-- display the courses as list items -->
+    	</ul>
+    </p>  
+
+</div> 
+
+<div class="studentCard" id="card2">
+	<h3>Student ID: <span></span></h3>
+    <p>Student GPA: <span ></span></p>
+	<p>Student Courses:
+    	<ul>
+			<!-- display the courses as list items -->
+    	</ul>
+    </p>  
+
+</div>    
+
+<div class="studentCard" id="card3">
+	<h3>Student ID: <span></span></h3>
+    <p>Student GPA: <span></span></p>
+	<p>Student Courses:
+    	<ul>
+			<!-- display the courses as list items -->
+    	</ul>
+    </p>  
+
+</div>    
+
+<div class="studentCard" id="card4">
+	<h3>Student ID: <span></span></h3>
+    <p>Student GPA: <span></span></p>
+	<p>Student Courses:
+    	<ul>
+			<!-- display the courses as list items -->
+    	</ul>
+    </p>  
+
+</div>    
+
+<div class="studentCard" id="card5">
+	<h3>Student ID: <span></span></h3>
+    <p>Student GPA: <span></span></p>
+	<p>Student Courses:
+    	<ul>
+			<!-- display the courses as list items -->
+    	</ul>
+    </p>  
+
+</div>    
+
+
+
+</body>
+</html>

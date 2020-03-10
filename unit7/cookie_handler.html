@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cookies!!!!</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="js/jquery-3.2.1.js"></script>
+<script src="js/cookieFunctions.js"></script>
+<script>
+
+window.onload = function(){
+
+//------------------------3-DAY-PERSISTENT COUNTER COOKIE FOR VISITS--------------------//
+	//find the Cookie with the name Counter
+	var visits = getCookie("counter");
+	
+	//if there is no Cookie with the name Counter, make one equal to 1, for the number of visits
+	if(!visits)
+	{
+		visits = 1;
+	}
+	//if there is a Cookie with the name Counter, add 1 to the total visits.
+	else
+	{
+		visits = parseInt(visits)+1;
+	}
+	//set up the Cookie with the name Counter, with the number of visits as its value, and set its expiration date for 3 days ahead
+	setCookie("counter", visits, 3);
+	
+//------------------------SESSION PREVIOUS-SITE COOKIE --------------------//
+	//create a cookie with the name PrevWeb whose value is the URL of the site that led to the homepage, and leave out expiration date so that the cookie is gone after the session is ended
+	setCookie("prevWeb", document.referrer);
+	
+//------------------------6-MONTH-PERSISTENT SECURED AUTHENTICATION COOKIE --------------------//
+	//if there is a cookie with the name of SecureCookie, print message saying so
+		var secureCookie = getCookie("secureCookie");
+		if(!secureCookie)
+		{
+			$("#secureCookieConfirm").html("No secure cookie has been created yet.");
+			$("#secureCookieConfirm").css({"color":"#e4018c","background-color":"#ffcceb","font-weight":"bold",});
+		}
+		else
+		{
+			$("#secureCookieConfirm").html("A secure cookie has been created!");
+			$("#secureCookieConfirm").css({"color":"#a964e5","background-color":"#e7d3f8","font-weight":"bold",});
+		}
+	
+	//when CREATE A SECURE COOKIE! button is clicked, the secure authentication cookie is created that has the name SecureCookie, the value of sC, and a 6-month(180 day) expiration date
+	$("#secureCookie").click(function(){
+		setCookie("secureCookie", "sC", 180);
+		
+		var secureCookie = getCookie("secureCookie");
+		if(!secureCookie)
+		{
+			$("#secureCookieConfirm").html("No secure cookie has been created yet.");
+			$("#secureCookieConfirm").css({"color":"#e4018c","background-color":"#ffcceb","font-weight":"bold",});
+		}
+		else
+		{
+			$("#secureCookieConfirm").html("A secure cookie has been created!");
+			$("#secureCookieConfirm").css({"color":"#a964e5","background-color":"#e7d3f8","font-weight":"bold",});
+		}
+	});
+	
+	
+		
+};
+</script>
+
+
+
+</head>
+<body>
+<div id="contain">
+<p><a href="cookieHandlingHomepage.html">Home</a> / <a href="cookieHandlingAbout.html">About</a></p>
+
+<h1>Cookies</h1>
+
+<h2>Cookie Usage Demo</h2>
+
+
+<p>Click the button to create a cookie:<p>
+
+<input type="button" id="secureCookie" value="Create a Secure Cookie!" />
+<p id="secureCookieConfirm"></p>
+
+</div>
+</body>
+</html>

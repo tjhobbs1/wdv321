@@ -1,79 +1,336 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-* {
-  box-sizing: border-box;
-}
-.menu {
-  float: left;
-  width: 20%;
-}
-.menuitem {
-  padding: 8px;
-  margin-top: 7px;
-  border-bottom: 1px solid #f1f1f1;
-}
-.main {
-  float: left;
-  width: 60%;
-  padding: 0 20px;
-  overflow: hidden;
-}
-.right {
-  background-color: lightblue;
-  float: left;
-  width: 20%;
-  padding: 10px 15px;
-  margin-top: 7px;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="recipeJSON.js"></script>
 
-@media only screen and (max-width:800px) {
-  /* For tablets: */
-  .main {
-    width: 80%;
-    padding: 0;
-  }
-  .right {
-    width: 100%;
-  }
-}
-@media only screen and (max-width:500px) {
-  /* For mobile phones: */
-  .menu, .main, .right {
-    width: 100%;
-  }
-}
-</style>
+    <style>
+    #recipeBlock{
+        width: 100%; 
+        text-align: center;
+        background-color: #0666a3
+    }
+    .title{
+        text-align: center;
+    }
+    .card{
+
+        display: inline-block;
+        border: 1px solid black;
+        margin-top: 20px;
+        padding-left: 70px;
+        padding-right: 70px;
+        
+        
+        height: auto;
+        width: 70%;
+        background-color: powderblue;
+    }
+    .image{
+        height: 400px;
+        width: 400px;
+        padding-top: 20px;
+    }
+    /*Double and Half Button*/
+    .button{
+        background-color: gray; 
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        margin-left: 30px;
+        margin-right: 30px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        border-radius: 8px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+    }
+     /*Show Hide Button*/
+    .button1{
+        background-color: gray; 
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        margin-left: 30px;
+        margin-right: 30px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        border-radius: 8px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+    }
+    
+    </style>
+
+    <script>
+        window.onload = function(){
+            
+        let recipe= JSON.parse(recipes);
+      
+    
+      for(i = 0; i < recipe.recipe.length; i++){
+            //Break Tags          
+            let br = document.createElement('br');
+            let br2 = document.createElement('br');
+            let br3 = document.createElement('br');
+            let br4 = document.createElement('br');
+            let br5 = document.createElement('br');
+            let br6 = document.createElement('br');
+
+            let newDiv = document.createElement('div');
+            let divId = newDiv.id = 'recipe' + i;
+            let divClass = newDiv.classList.add("card")
+            document.getElementById('recipeList').appendChild(newDiv);
+
+            //Image
+            let image = recipe.recipe[i].image;
+            let recipeImage = document.createElement('img');
+            let recipeImageClass = recipeImage.classList.add("image");
+            let recipeImageId = recipeImage.id = 'recipeImage'+i;
+            recipeImage.setAttribute("src",image);
+            document.getElementById(divId).append(recipeImage)
+
+            //Recipe Title
+            let recipeTitle = document.createElement('h2');
+            let recipeClass = recipeTitle.classList.add("title");
+            let recipeTitleId = recipeTitle.id = 'recipeTitle' + i;
+            document.getElementById(divId).appendChild(recipeTitle)
+            recipeName = recipe.recipe[i].name;
+            document.getElementById(recipeTitleId).innerHTML = recipeName
+
+            //Recipe ID (Hidden)
+            let recipeIdNum = document.createElement('h6');
+            let recipeIdNumId = recipeIdNum.id = 'recipeIdNum' + i;
+            document.getElementById(divId).appendChild(recipeIdNum)
+            let recipeDescript2 = i
+            document.getElementById(recipeIdNumId).innerHTML = recipeDescript2
+            document.getElementById(recipeIdNumId).style.display = 'none';
+
+
+            //Serving Size
+            let servingSize = recipe.recipe[i].servings;
+            let servings = document.createElement('span');
+            let recipeQtyId = servings.id = 'recipeQtyId' + i;
+            servings.innerHTML = servingSize;
+            document.getElementById(divId).appendChild(servings);
+            let span = document.createElement('span')
+            let spanId = span.id = 'spanId' + i;
+            document.getElementById(divId).appendChild(span);
+            document.getElementById(spanId).innerHTML = " Servings";
+
+            document.getElementById(divId).appendChild(br);
+
+
+            //Prep Time
+            let prepTime = document.createElement('span');
+            let prepTimeId = prepTime.id = 'prepTime' + i;
+            let servingTitle = document.createElement('span');
+            let servingTitleId = servingTitle.id = 'prepTimeTitle'+i;
+            document.getElementById(divId).appendChild(servingTitle)
+            document.getElementById(servingTitleId).innerHTML = "Prep Time: ";
+            document.getElementById(divId).appendChild(prepTime);
+            prepTime1 = recipe.recipe[i].prepTime;
+            document.getElementById(prepTimeId).innerHTML = prepTime1;
+            
+            document.getElementById(divId).appendChild(br2);
+
+            //Cook Time
+            let cookTime = document.createElement('span');
+            let cookTimeId = cookTime.id = 'cookTime' + i;
+            let cookTimeTitle = document.createElement('span');
+            let cookTimeTitleId = cookTimeTitle.id = 'cookTimeTitle'+i;
+            document.getElementById(divId).appendChild(cookTimeTitle)
+            document.getElementById(cookTimeTitleId).innerHTML = "Cook Time: ";
+            document.getElementById(divId).appendChild(cookTime);
+            cookTime1 = recipe.recipe[i].cookTime;
+            document.getElementById(cookTimeId).innerHTML = cookTime1;
+
+            document.getElementById(divId).appendChild(br5);
+
+
+            //Show/Hide Ingredients
+            let showIngred = document.createElement('Button');
+            showIngred.type = 'button';
+            showIngred.innerHTML = 'Show/Hide Ingredients';
+            showIngred.classList.add('button1');
+            document.getElementById(divId).appendChild(showIngred);
+            showIngred.addEventListener('click',function(){
+                let ingredDiv = document.getElementById(recipeIngredListId)
+                if (ingredDiv.style.display ==="none"){
+                    ingredDiv.style.display = 'block';
+                }else{
+                    ingredDiv.style.display = 'none';
+                }
+                
+                
+            })//End Show/Hide Ingredients
+            
+            document.getElementById(divId).appendChild(br6);
+
+            //Ingredient List
+            let recipeIngredList = document.createElement('div');
+            let recipeIngredListId = recipeIngredList.id = 'recipeIngredList' + i;
+            document.getElementById(divId).appendChild(recipeIngredList)
+            document.getElementById(recipeIngredListId).style.display = 'none';
+
+            //Ingredients
+           
+            for(z=0; z < recipe.recipe[i].ingredients.length; z++){
+                
+                let ingredientamt = recipe.recipe[i].ingredients[z].amount;
+                let unit = recipe.recipe[i].ingredients[z].units;
+                let food = recipe.recipe[i].ingredients[z].name;
+                
+
+
+                let ingredientList = document.createElement('div');
+                ingredientList.id = 'ingredientList'+z;
+                let ingredId = "ingred" + z
+                ingredientList.innerHTML = 
+                        '<span id="'+ingredId +'">' + ingredientamt +'</span> ' +
+                        '<span>' + unit + '</span> '+
+                        '<span>' + food + '</span>';
+
+                
+                document.getElementById(recipeIngredListId).appendChild(ingredientList);
+
+
+
+            }
+
+            let showInstruction = document.createElement('Button');
+            showInstruction.type = 'button';
+            showInstruction.classList.add('button1');
+            showInstruction.innerHTML = 'Show/Hide Instruction';
+            document.getElementById(divId).appendChild(showInstruction);
+            
+            showInstruction.addEventListener('click',function(){
+                let steps = document.getElementById(instructionsId);
+                if (steps.style.display ==="none"){
+                    steps.style.display = 'block';
+                }else{
+                    steps.style.display = 'none';
+                }
+                
+                
+            })//End Show/Hide Instructionjs
+            
+            document.getElementById(divId).appendChild(br3)
+
+           //Instructions
+           let instructions = document.createElement("div")
+           let instructionsId = instructions.id = 'instructions' + recipeDescript2;
+            document.getElementById(divId).appendChild(instructions)
+            document.getElementById(instructionsId).style.display = 'none';
+            
+            for(z=0; z < recipe.recipe[i].steps.length; z++){
+                let steps = recipe.recipe[i].steps[z].description;
+                let stepList = document.createElement('div');
+                let stepListId = stepList.id = 'stepList'+z;
+                stepList.innerHTML =  '<span id="'+stepListId +'">' + steps + '</span> '
+                document.getElementById(instructionsId).appendChild(stepList);
+
+
+            }//End Instructions
+
+            //Show/Hide Instruction
+
+           
+            document.getElementById(divId).appendChild(br4)
+
+            //Buttons
+
+            //Half Serving
+            let halfServing = document.createElement('Button');
+            halfServing.type = 'button';
+            halfServing.innerHTML = 'Half';
+            halfServing.classList.add('button');
+            document.getElementById(divId).appendChild(halfServing);
+            halfServing.addEventListener('click',function(){
+                let recipe_Qty = document.getElementById(recipeQtyId).innerHTML
+                let recipeNum = document.getElementById(recipeIdNumId).innerHTML
+                let y = recipe_Qty /2
+                document.getElementById(recipeQtyId).innerHTML = y;
+
+                //Get the number of ingredients
+                let numOfIngred = document.getElementById("recipeIngredList"+recipeNum).childElementCount;
+                
+
+                c = 0;
+               
+                while(c< numOfIngred){
+
+                    let ingredAmt = document.querySelector("#recipeIngredList" +recipeNum + " > #ingredientList"+c+ " > #ingred"+c).innerHTML
+                    let newAmt = ingredAmt/2
+                    document.querySelector("#recipeIngredList" +recipeNum + " > #ingredientList"+c+ " > #ingred"+c).innerHTML = newAmt
+                    c ++;
+                }
+                
+                 
+                
+                
+            })//End Half Serving
+            
+            //Double Serving
+            let doubleServing = document.createElement('Button');
+            doubleServing.innerHTML = "Double";
+            doubleServing.classList.add('button');
+            document.getElementById(divId).appendChild(doubleServing)
+            
+            doubleServing.addEventListener('click', function(){
+                let recipe_Qty = document.getElementById(recipeQtyId).innerHTML
+                let recipeNum = document.getElementById(recipeIdNumId).innerHTML
+                let y = recipe_Qty * 2
+                document.getElementById(recipeQtyId).innerHTML = y;
+
+                //Get the number of ingredients
+                let numOfIngred = document.getElementById("recipeIngredList"+recipeNum).childElementCount;
+                
+
+                c = 0;
+               
+                while(c< numOfIngred){
+
+                    let ingredAmt = document.querySelector("#recipeIngredList" +recipeNum + " > #ingredientList"+c+ " > #ingred"+c).innerHTML
+                    let newAmt = ingredAmt * 2
+                    document.querySelector("#recipeIngredList" +recipeNum + " > #ingredientList"+c+ " > #ingred"+c).innerHTML = newAmt
+                    c ++;
+                }
+                
+
+            })//End double serving
+           
+        } //end for loop
+
+    
+       
+        
+    
+        }//end onload()
+
+       
+        
+    
+    </script>
+
+
 </head>
-<body style="font-family:Verdana;">
+<body>
 
-<div style="background-color:#f1f1f1;padding:15px;">
-  <h1>Recipe Manager</h1>
-</div>
+    <div id="recipeBlock">
+            <div id="recipeList">
 
+    </div>
+    
+        
+    </div>
 
-
-  <div class="main">
-    <h2>The Walk</h2>
-    <p>The walk from Monterosso to Riomaggiore will take you approximately two hours, give or take an hour depending on the weather conditions and your physical shape.</p>
-    <img src="img_5terre.jpg" style="width:100%">
-  </div>
-
-  <div class="right">
-    <h2>What?</h2>
-    <p>Cinque Terre comprises five villages: Monterosso, Vernazza, Corniglia, Manarola, and Riomaggiore.</p>
-    <h2>Where?</h2>
-    <p>On the northwest cost of the Italian Riviera, north of the city La Spezia.</p>
-    <h2>Price?</h2>
-    <p>The Walk is free!</p>
-  </div>
-</div>
-
-
-<div style="background-color:#f1f1f1;text-align:center;padding:10px;margin-top:7px;font-size:12px;"> This web page is a part of a demonstration of fluid web design made by w3schools.com. Resize the browser window to see the content respond to the resizing.</div>
-
+    
 </body>
 </html>
-
