@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mocha Tests</title>
+    <link rel="stylesheet" href="node_modules/mocha/mocha.css">
+  </head>
+  <body>
+        <h1>Ty's Phone Number Mocha/Chai Test Plan Runner</h1>
+    <div id="mocha"></div>
+    <script src="node_modules/mocha/mocha.js"></script>
+    <script src="node_modules/chai/chai.js"></script>
+    <script>mocha.setup('bdd')</script>
+
+    <!-- load code you want to test here -->
+    <script src="app/validatePhoneNumber.js"></script>
+    <script src="app/validateRequiredField.js"></script>
+
+    <!-- load your test files here -->
+    <script src="test/validateRequiredField.test.js"></script>
+    
+    
+    <script>
+      mocha.run();
+    </script>
+  </body>
+</html>

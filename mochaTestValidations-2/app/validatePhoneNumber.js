@@ -1,15 +1,19 @@
 // JavaScript Document
 
 var validatePhoneNumber = function(inValue){
-	inValue += "";	//turns all inValues into strings
-	var reg = new RegExp('^[0-9]+$');
-	if(inValue.trim() == "" || inValue == 'null' || inValue == 'undefined'){
-		return false;
-	}
-	return true;
-	if(reg.test(inValue)){
-		return True
-	}return False
+	var match = inValue.match(/^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/);
+
+    if(inValue.trim() == "" || inValue == 'null' || inValue == 'undefined'){
+        return false;
+    }else{
+        if (match) {
+        return true;
+    }else{
+        return false;
+    }
+    }
+
+	
 
 }
 

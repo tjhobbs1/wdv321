@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+    
+
+    
+
+    function DoValidatePhone(inValue) {   
+    var match = inValue.match(/^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/);
+
+    if(inValue.trim() == "" || inValue == 'null' || inValue == 'undefined'){
+        return false;
+    }else{
+        if (match) {
+        return true;
+    }else{
+        return false;
+    }
+    }
+    
+}
+    
+    alert(DoValidatePhone("1"))
+   
+
+
+    </script>
+</head>
+<body>
+
+    
+</body>
+</html>
