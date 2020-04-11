@@ -6,46 +6,36 @@
 <style>
 
 body{
-	background-image: url("memphisInspired.png");
+	background-color: #56658c;
 	font-family: Helvetica, sans-serif;
 }
-#contain {
+#container {
 	width: 65%;
 	margin: 0 auto;
 	margin-top: 2%;
 	padding: 2%;
 	text-align: center;
-	background-color: rgba(256,256,256,.88);
-	border: .5em solid #f1c703;
+	background-color:  #d9dbe4;
+	border: .5em solid #121d58;
 }
-input[type=text]{
-	border-radius: 10em;
-	padding: .25% 1%;
-}
+
 h1{
 	text-decoration: underline;
 }
 footer{
 	font-size: .75em;
 }
-footer a{
-	color: black;
-	text-decoration: none;
-}   
+
 #cookieArea{
 	background-color: white;
-	border: .25em solid #55c0ba;
+	border: .25em solid #36366b;
 }
-#secureCookieConfirm{
-	width: 50%;
-	margin: 0 auto;
-	margin-bottom: 1em;
-}
+
 </style>
 
 </head>
 <body onload="checkCookie()">
-<div id="contain">
+<div id="container">
 <p><a href="cookiePage.html">Home</a> / <a href="cookieAbout.html">About</a></p>
 
 <h1>Cookies Demo</h1>
@@ -53,10 +43,9 @@ footer a{
 <h1 id="name"></h1>
 <p id="welcome"></p>
 
-<h2>Delicious, ooey, gooey, and also great for keeping track of data!</h2>
 
 <div id="cookieArea">
-<p>Make sure you create a secure cookie before going on ahead, or you'll just wind back here!<p>
+<p>Create a secure cookie to get into About Page.<p></p>
 
     <button onclick="getUserName()">Get UserName</button>
 
@@ -68,8 +57,7 @@ footer a{
 
     <button onclick="secureCookie()">Create Secure Cookie</button>
 
-<input type="button" id="secureCookie" value="Create a Secure Cookie!" />
-<p id="secureCookieConfirm"></p>
+
 </div>
 </div>
 </body>
