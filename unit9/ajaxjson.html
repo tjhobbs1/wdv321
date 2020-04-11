@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AJAX with JSON</title>
+<style>
+    body{
+        background-color: #9cb4db;
+    }
+    #studentDiv{
+        background-color: #dde3ed;
+        margin: auto;
+        width: 50%;
+        border: 3px solid #47494d;
+        padding: 10px;
+    }
+    #header{
+        text-align: center;
+    }
+    #dropDown{
+        padding-bottom: 10px;
+    }
+
+
+</style>
+
+<script type = "application/javascript">
+
+function ajax_get(url, callback) {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            console.log('responseText:' + xmlhttp.responseText);
+            try {
+                var data = JSON.parse(xmlhttp.responseText);
+            } catch(err) {
+                console.log(err.message + " in " + xmlhttp.responseText);
+                return;
+            }
+            callback(data);
+        }
+    };
+ 
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+}
+ 
+
+function getStudent(x){
+    ajax_get(x, function(data) {
+    document.getElementById("name").innerHTML = "Name: " + data["student_last_name"] + ', ' + data["student_first_name"] ;
+    document.getElementById("studentID").innerHTML = "Student ID: " + data["student_id"];
+    document.getElementById("studentMajor").innerHTML = "Major: " + data["student_major"];
+    document.getElementById("studentCredit").innerHTML = "Credits: " + data["student_credits"] + 'hrs';
+    document.getElementById("studentGPA").innerHTML = "GPA: " + data["student_gpa"];
+    document.getElementById("studentRegDate").innerHTML = "Registration Date: " + data["student_registration_date"];
+ 
+    
+});
+
+}
+
+
+   
+ </script>
+
+</head>
+
+
+<body>
+    
+<hr>
+<div id="dropDown">
+        <label for="students">Choose a Student:</label>
+
+        <select id="students" onchange="getStudent(value)">
+        <option value="">Choose a Student</option>
+        <option value="900668871.js">Student 1</option>
+        <option value="900006361.js">Student 2</option>
+        <option value="903998004.js">Student 3</option>
+        </select>
+    </div>
+
+        
+
+        <div id="studentDiv">
+                <h1 id="header">Student Info:</h1>
+                <h3 id="name"></h3>
+                <p id="studentID"></p>
+                <p id="studentMajor"></p>
+                <p id="studentCredit"></p>
+                <p id="studentGPA"></p>
+                <p id="studentRegDate"></p>
+
+
+
+
+        </div>
+      
+ </body>
+
+</html>
