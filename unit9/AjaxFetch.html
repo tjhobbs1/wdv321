@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+
+    body{
+        background-color: #9cb4db;
+    }
+    #header{
+        text-align: center;
+    }
+    #dropDown{
+        margin: auto;
+        width: 60%;
+        border: 3px solid#47494d;
+        padding: 10px;
+        
+        
+    }
+    #studentCard{
+        background-color: #dde3ed;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 40%;
+    }
+    #studentCard:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+    
+    
+    </style>
+
+    <script>
+       function getStudent(x){
+        fetch(x)
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                document.querySelector('#starter').innerHTML = "";
+                document.querySelector('#studentFName').innerHTML = data.student_first_name;
+                document.querySelector('#studentLName').innerHTML = data.student_last_name;
+                document.querySelector('#studentId').innerHTML = "Student ID: " + data.student_id;
+                document.querySelector('#studentMajor').innerHTML = "Student Major: " + data.student_major;
+                document.querySelector('#studentCredits').innerHTML = "Num of Credits: " + data.student_credits;
+                document.querySelector('#studentGPA').innerHTML = "GPA: " + data.student_gpa;
+                document.querySelector('#studentRegDate').innerHTML = "Reg Date: " + data.student_registration_date;
+            })
+
+        }
+
+        
+        
+        
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AJAX with Fetch</title>
+</head>
+<body>
+    <div></div>
+    <h1 id="header">Student Info AJAX Fetch</h1>
+
+    <div id="dropDown">
+            <label for="students">Choose a Student:</label>
+            <select id="students" onchange="getStudent(value)">
+            <option value="">Choose a Student</option>
+            <option value="900668871.js">Student 1</option>
+            <option value="900006361.js">Student 2</option>
+            <option value="903998004.js">Student 3</option>
+            </select>
+    </div>
+
+    <div id="studentCard">
+        <h2 id="starter">Select A Student from Menu Above to see info.</h2>
+        <h3><span id="studentFName"></span> <span id="studentLName"></span></h3>
+        <p><span id="studentId"></span></p>
+        <p><span id="studentMajor"></span></p>
+        <p><span id="studentCredits"></span></p>
+        <p><span id="studentGPA"></span></p>
+        <p><span id="studentRegDate"></span></p>
+    
+
+
+    </div>
+
+    
+</body>
+</html>
