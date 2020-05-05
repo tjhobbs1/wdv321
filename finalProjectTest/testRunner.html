@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <style>
+      #testHeader{
+        text-align: center;
+      }
+      #mocha{
+        margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
+  margin-top: 5%;
+      }
+    </style>
+    <title >Mocha Tests</title>
+    <link rel="stylesheet" href="node_modules/mocha/mocha.css">
+  </head>
+  <body>
+        <h1 id="testHeader">Test for Recipe Input Form</h1>
+    <div id="mocha"></div>
+    <script src="node_modules/mocha/mocha.js"></script>
+    <script src="node_modules/chai/chai.js"></script>
+    <script>mocha.setup('bdd')</script>
+
+    <!-- load code you want to test here -->
+    <script src="app/recipeFormTester.js"></script>
+   
+    
+
+    <!-- load your test files here -->
+    <script src="test/validationTest.js"></script>
+    
+    
+    <script>
+      mocha.run();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<script>
+
+
+
+</script>
+
+<head>
+  <title>Recipe Manager</title>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!------ Include the above in your HEAD tag ---------->
+</head>
+<body>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Dynamic Form Fields - Add & Remove Multiple fields</div>
+  <div class="panel-heading">Education Experience</div>
+  <div class="panel-body" id="main_block">
+
+    <!--Qty Field-->
+    <div class="col-sm-3 nopadding">
+      <div class="form-group">
+        <input type="text" class="form-control" id="Qty" name="Qty[]" value="" placeholder="Enter Quantity">
+      </div>
+    </div>
+    <!--End Qty Field-->
+
+    <!--Unit Field-->
+    <div class="col-sm-3 nopadding">
+        <div class="form-group">
+          <div class="input-group">
+            <select class="form-control" id="unit" name="unit[]">
+                <option value="">Choose a Unit</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    <!--End Unit Field-->
+
+
+    <!--Ingredient Field-->
+    <div class="col-sm-3 nopadding">
+      <div class="form-group">
+        <input type="text" class="form-control" id="Ingredient" name="Ingredient[]" value="" placeholder="Ingredient">
+    </div>
+    </div>
+    <!--End Ingredient Field-->
+
+    <!--Add Button-->
+    <div class="input-group-btn">
+        <button class="btn btn-success" type="button"  onclick="add_ingredient_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+    </div>
+    <!--End Add Button-->
+   
+
+   
+    <div class="clear"></div>
+    <h1>Saved</h1>
+    <div id="ingredient_fields"></div>
+  </div>
+  <div class="panel-footer"><small>Press <span class="glyphicon glyphicon-plus gs"></span> to add another form field :)</small>,
+    <small>Press <span class="glyphicon glyphicon-minus gs"></span> to remove form field :)</small></div>
+</div>
+<script>
+
+    
+
+
+    var count = 1;
+    // add dynamic fields
+    function add_ingredient_fields() {
+        let qty = document.getElementById('Qty').value;
+        let unit = document.getElementById('unit').value;
+        let ingred = document.getElementById('Ingredient').value;
+
+
+        count++;
+
+        var parentDiv = document.getElementById('ingredient_fields'); // point to the parent Div
+        var childDiv = document.createElement("div"); // create child div on the fly
+        childDiv.setAttribute("class", "form-group removeclass"+count); // add a dynamic class to the child div
+        childDiv.innerHTML = '' +
+            '<div class="col-sm-3 nopadding">' +
+            '<div class="form-group">' +
+            '<input readonly="readonly" type="text" class="form-control" id="Qty" name="Qty'+count+'" value="'+qty+'" placeholder="Enter Quantity">' +
+            '</div> <!--End Add Button1-->' +
+            '</div> <!--End Add Button2-->' +
+            '<div class="col-sm-3 nopadding">'+
+                    '<div class="form-group">'+
+                    '<div class="input-group">'+
+                    '<select readonly="readonly" class="form-control" id="unit" name="unit[]">' +
+                    '<option value="'+unit+'">'+unit+'</option>' +
+                    '</select>' +
+                    '</div>' +
+                    '</div>'+
+                    '</div>'+
+                    '<div class="col-sm-3 nopadding">' +
+                    '<div class="form-group"> ' +
+                    '<input readonly="readonly" type="text" class="form-control" id="Ingredient" name="Ingredient[]" value="'+ingred+'" placeholder="Enter Ingredient">' +
+                    '</div>' +
+                    '</div>' +
+
+                    '<div class="input-group-btn">' +
+                    ' <button class="btn btn-danger" type="button" onclick="remove_education_fields('+ count +');"> ' +
+                    '<span class="glyphicon glyphicon-minus" aria-hidden="true"></span> ' +
+                    '</button>' +
+                    '</div>' +
+
+            
+            '<div class="clear"></div><br>';
+
+        parentDiv.appendChild(childDiv); //  append or inject dynamic fields to the parent div
+        
+        var StoredDiv = $('.removeclass'+count).html();
+        manage_append(count,StoredDiv,'add'); //  store the dynamic fields to local storage
+        qty = document.getElementById('Qty');
+      
+        unit = document.getElementById('unit');
+       
+       
+        ingred = document.getElementById('Ingredient');
+        
+                    
+        qty.value = '';
+        unit.value = '';
+        unit.innerHTML = "Choose a Unit";
+        ingred.value = '';
+
+
+        
+
+    
+      
+    }
+
+    function populateUnitList(unitList){
+            let cuisines = ["Cups","Ounces"];     
+            let sel = document.getElementById(unitList);
+            
+            
+            for(let i = 0; i < cuisines.length; i++) {
+                let opt = document.createElement('option');
+                opt.innerHTML = cuisines[i];
+                opt.value = cuisines[i];
+                sel.appendChild(opt);
+            }
+        }
+
+
+
+    // remove dynamic fields
+    function remove_education_fields(rid) {
+        manage_append(rid,0,'delete');
+        $('.removeclass'+rid).remove();
+    }
+     // add and remove dynamic fields from local storage
+    function manage_append(count,html,action){
+        if(action === 'add'){
+            localStorage.setItem(count,html);//
+        }else{
+            localStorage.removeItem(count);
+        }
+
+    }
+
+    // restore dynamic fields from local storage
+    $(function () {
+        for ( var i = 0, len = localStorage.length; i < len; ++i ) {
+         $("#education_fields").append( localStorage.getItem( localStorage.key( i ) ) );
+        }
+    });
+
+
+    populateUnitList('unit')
+</script>
+</body>
+</html>

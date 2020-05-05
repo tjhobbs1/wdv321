@@ -1,0 +1,50 @@
+
+            '<div class="col-sm-3 nopadding">'+
+                    '<div class="form-group">'+
+                    '<div class="input-group">'+
+                    '<select readonly="readonly" class="form-control" id="unit" name="unit[]">' +
+                    '<option value="'+unit+'">'+unit+'</option>' +
+                    '</select>' +
+                    '</div>' +
+                    '</div>'+
+                    '</div>'+
+        
+                    
+        
+                    '<div class="col-sm-3 nopadding">' +
+                    '<div class="form-group"> ' +
+                    '<input readonly="readonly" type="text" class="form-control" id="Ingredient" name="Ingredient[]" value="'+ingred+'" placeholder="Enter Ingredient">' +
+                    '</div>' +
+                    '</div>' +
+        
+                    '<div class="input-group-btn">' +
+                    ' <button class="btn btn-danger" type="button" onclick="remove_education_fields('+ room +');"> ' +
+                    '<span class="glyphicon glyphicon-minus" aria-hidden="true"></span> ' +
+                    '</button>' +
+                    '</div>' +
+                    
+
+
+
+
+                    function getIngred(){
+                        numOfIngred = ingredCount;
+                        ingredDict = {}
+                        let count1 = 1
+                    
+                        while(count1 != numOfIngred){
+                            
+                            let amount = getInputVal('amount'+count1);
+                            let unit = getInputVal('unit'+count1);
+                            let ingred = getInputVal('ingred'+count1);
+                    
+                            
+                            ingredDict['amount'+ count1] = amount;
+                            ingredDict['unit'+ count1] = unit;
+                            ingredDict['ingred'+ count1] = ingred;
+                            count1++
+                        }
+                        return ingredDict;
+                    }
+
+                    -?\\b\\d+(?:\\.\\d+)?(?:/\\d+(?:\\.\\d+)?)?\\b
